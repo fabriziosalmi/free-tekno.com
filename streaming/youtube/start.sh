@@ -1,5 +1,5 @@
 #!/bin/bash
-VBR="1500k"
+VBR="3000"
 FPS="30"
 QUAL="ultrafast"
 
