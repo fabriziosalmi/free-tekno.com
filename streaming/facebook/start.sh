@@ -1,14 +1,26 @@
 #!/bin/bash
+VBR="3000k"
+FPS="30"
+QUAL="ultrafast"
+STREAM_URL="rtmps://live-api-s.facebook.com:443/rtmp/" # Facebook live endpoint
+STREAM_KEY="XXXX" # use a permanent stream key here # Facebook stream key (I suggest to generate a permanent key via FB live producer v2)
+VIDEO_SOURCE="/mnt/livestream/video.mp4" # local video file
+AUDIO_SOURCE="http://radio.freeundergroundtekno.org/radio/8000/radio.mp3" # mp3 radio stream url
+NP_SOURCE="/mnt/livestream/nowplaying.txt" # now playing data
 
+while :
+do
 
-INPUT_VIDEO=output.mp4
-MAX_RATE=4000k
-PRESET=veryfast
-AUDIO_BITRATE=128k
-FACEBOOK_STREAM_KEY=abcd
+ffmpeg \
+    -re -f lavfi -i "movie=filename=$VIDEO_SOURCE:loop=0, setpts=N/(FRAME_RATE*TB)" \
+    -thread_queue_size 512 -i "$AUDIO_SOURCE" \
+    -map 0:v:0 -map 1:a:0 \
+    -map_metadata:g 1:g \
+    -vf drawtext="fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf: fontsize=25: \
+     box=0: boxcolor=black@0.5: boxborderw=20: \
+     textfile=$NP_SOURCE: reload=1: fontcolor=white@0.8: x=50: y=th" \
+    -vcodec libx264 -pix_fmt yuv420p -preset $QUAL -r $FPS -g $(($FPS * 2)) -b:v $VBR \
+    -c:a aac -b:a 128k -ac 2 -ar 44100 -bufsize 4096k \
+    -f flv "$STREAM_URL/$STREAM_KEY"
 
-fmpeg -re -y \
--i $INPUT_VIDEO -c:a copy -ac 1 -ar 44100 -b:a $AUDIO_BITRATE -vcodec libx264 \
--pix_fmt yuv420p -vf scale=1080:-1 -r 30 -g 60 -tune zerolatency 
--f flv -maxrate $MAX_RATE -preset $PRESET \
-"rtmps://live-api-s.facebook.com:443/rtmp/$FACEBOOK_STREAM_KEY"
+done
