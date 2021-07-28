@@ -1,3 +1,41 @@
 ## still um
 
-ffmpeg quiet options: -hide_banner -loglevel panic
+#!/bin/bash
+
+# set env
+TEMP_DIR="/mnt/free-tekno.com/youtube/tmp"
+VIDEO_STORAGE=/mnt/free-tekno.com/youtube/storage
+mkdir -p $TEMP_DIR
+mkdir -p $VIDEO_STORAGE
+
+SQL="mysql -u MYSQL_USER -pMYSQL_PASS DATABASE -h MYSQL_HOST"
+myvar=$($SQL -se "SELECT id,url,image,yt_status,yt_url FROM tracks WHERE yt_status IS NULL ORDER BY id ASC LIMIT 1;")
+
+ID=$(echo $myvar | awk '{print $1}')
+URL=$(echo $myvar | awk '{print $2}')
+IMAGE=$(echo $myvar | awk '{print $3}')
+YT_STATUS=$(echo $myvar | awk '{print $4}')
+YT_URL=$(echo $myvar | awk '{print $5}')
+
+# cli debug
+echo "ID: "$ID
+echo "URL: "$URL
+echo "IMAGE: "$IMAGE
+echo "YT_STATUS: "$YT_STATUS
+echo "YT_URL: "$YT_URL
+
+# filenames
+echo $URL | sed 's/storage\/track_media\///g' > $TEMP_DIR/temp_id
+cat $TEMP_DIR/temp_id | sed 's/\.mp3//g' > $TEMP_DIR/id
+REAL_ID=$(cat $TEMP_DIR/id)
+echo $URL | sed 's/storage\/track_image\///g' > $TEMP_DIR/temp_image
+IMAGE_NAME=$(cat $TEMP_DIR/temp_image)
+
+# save track id to video storage
+echo $ID > $VIDEO_STORAGE/$REAL_ID.id
+
+# convert audio to video (ffmpeg waveforms recipe) and save mp4 file to storage
+ffmpeg -i /var/www/free-tekno.com/public/$URL -filter_complex "[0:a]showwaves=s=1280x720:mode=line:rate=25,format=yuv420p[v]" -map "[v]" -map 0:a $VIDEO_STORAGE/$REAL_ID.mp4
+
+# set track status to "encoded aka ready to the youtube upload process"
+$SQL -se "UPDATE tracks SET yt_status = 1 WHERE id = $ID;"
