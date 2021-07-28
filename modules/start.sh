@@ -6,7 +6,7 @@ VIDEO_STORAGE=/mnt/free-tekno.com/youtube/storage
 mkdir -p $TEMP_DIR
 mkdir -p $VIDEO_STORAGE
 
-SQL="mysql -u $MYSQL_USER -p$MYSQL_PASS $MYSQL_DB -h $MYSQL_HOST"
+SQL="mysql -u XXX_MYSQL_USER -pXXX_MYSQL_PASS XXX_BNAME -h XXX_MYSQL_HOST"
 myvar=$($SQL -se "SELECT id,owner_id,url,image,yt_status,yt_url FROM tracks WHERE yt_status IS NULL ORDER BY id ASC LIMIT 1;")
 
 ID=$(echo $myvar | awk '{print $1}')
@@ -37,25 +37,27 @@ echo $ID > $VIDEO_STORAGE/$REAL_ID.id
 ffmpeg -i /var/www/free-tekno.com/public/$URL -filter_complex "[0:a]showwaves=s=1280x720:mode=line:rate=25,format=yuv420p[v]" -map "[v]" -map 0:a $VIDEO_STORAGE/$REAL_ID.mp4
 $SQL -se "UPDATE tracks SET yt_status = 1 WHERE id = $ID;"
 
-
-# send to YouTube
+# prepare for YouTube
 TRACK_NAME=$($SQL -se "SELECT name FROM tracks WHERE id = $ID;")
 TRACK_ARTIST=$($SQL -se "SELECT first_name, last_name FROM users WHERE id = $OWNER_ID;")
+
 echo "Join and download $TRACK_NAME by $TRACK_ARTIST for free on https://free-tekno.com\nDownload link: https://free-tekno.com/public/$URL\n\nSend your music: https://t.me/joinchat/pulxr-bv87szMTA0\n24/7 free tekno radio, streaming and rave culture: https://www.freeundergroundtekno.org" > $TEMP_DIR/video_description
+
 DESCRIPTION=$(cat $TEMP_DIR/video_description)
 
-# require youtubeuploader (https://github.com/porjo/youtubeuploader)
+# upload to YouTube
 youtubeuploader_linux_amd64 -categoryId 10 -title "$TRACK_NAME by $TRACK_ARTIST" -description "$DESCRIPTION" -tags "tekno,freetekno,free-tekno.com,free underground tekno radio,taz,teknival,$TRACK_NAME,$TRACK_ARTIST,rave,free party,dj,mix,liveset" -thumbnail "https://free-tekno.com/$IMAGE"  -filename $VIDEO_STORAGE/$REAL_ID.mp4 > $TEMP_DIR/temp_upload
 
+# retrieve YouTube video ID
 YT_URL_CREATED=$(cat $TEMP_DIR/temp_upload | grep successful | awk '{print $5}')
 
+# update DB
 $SQL -se "UPDATE tracks SET yt_status = 2 WHERE id = $ID;"
 $SQL -se "UPDATE tracks SET yt_url = 'https\:\/\/www\.youtube\.com\/watch?v=$YT_URL_CREATED' WHERE id = $ID;"
 $SQL -se "UPDATE tracks SET yt_status = 3 WHERE id = $ID;"
 
 # notification - upload
 echo "New track uploaded to YouTube:\n" > $TEMP_DIR/mail
-echo "Free-Tekno.com URL: https://free-tekno.com/public/$URL >> $TEMP_DIR/mail
-echo "YouTube.com URL: https://www.youtube.com/watch?v=$YT_URL_CREATED >> $TEMP_DIR/mail
-
+echo "FT URL: https://free-tekno.com/public/$URL\n" >> $TEMP_DIR/mail
+echo "YT URL: https://www.youtube.com/watch?v=$YT_URL_CREATED" >> $TEMP_DIR/mail
 mail fabrizio.salmi@gmail.com -s "youtube-upload [$ID]" < $TEMP_DIR/mail
