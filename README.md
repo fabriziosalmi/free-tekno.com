@@ -4,21 +4,21 @@ A new re-designed platform for free tekno lovers. Free Sounds project experience
 
 ## Goals
 
-- Radio schedule must be delegated to the best users
-- Radio library tools can be easily improved
-- Video stream library can be easily improved
-- YouTube channel may have monetization enabled @ 4000vH/y (currently: 1650vH/y)
-- Websites ROI can be improved
-- Partnerships with product owners
-- Partnerships with artists
+- Radio schedule must be delegated to the best producers
+- Media library tools can be easily improved
+- YouTube channel traffic/subscribers increase
+- Websites ROI increase
+- Product / Artists partnerships
 
 ## Features
 
-- no account needed to access music library
+- no account to listen tracks, albums
+- playlists, downloads and favs for users
 - unlimited upload space for artists
-- upload to telegram group without any account
-- tracks, albums and playlists support
-- waveform timed comments
-- support all audio file types when uploading
-- desktop UI for producers, responsive for supporters
-- all tracks are automatically converted to video and uploaded to YouTube to get more audience and copy checks
+- multiple upload support (any audio file type)
+- waveform timed commenting system
+- responsive UI
+- send tracks via Telegram
+- all tracks auto-converted to video and uploaded to YouTube (more audience)
+- automatic bpm detection for all tracks
+- automatic qrcode image for all track
