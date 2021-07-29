@@ -4,3 +4,6 @@ bpm-tag -m 100 -x 200 -f -n /path/to/file.mp3
 
 # response:
 # /path/to/file.mp3: 169.959 BPM (while is 170 on Ableton Live)
+
+
+bpm-tag -m 100 -x 200 -f -n /path/to/file.mp3 > tmp/temp_bpm 2>&1 
