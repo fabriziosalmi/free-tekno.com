@@ -1,6 +1,6 @@
 <?php
 
-$STORAGE="$(cat .storage)";
+$STORAGE="/mnt/free-tekno.com/storage";
 // run every minute via crontab
 $url = "https://radio.freeundergroundtekno.org/api/nowplaying/free_underground_tekno";
 $data = file_get_contents($url);
