@@ -3,3 +3,5 @@ client_secrets.json
 request.token
 .db_config
 youtubeuploader_linux_amd64
+.stream_key_facebook
+.stream_key_youtube
