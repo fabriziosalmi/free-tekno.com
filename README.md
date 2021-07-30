@@ -1,11 +1,23 @@
 # free-tekno.com
 
-A new re-designed platform for free tekno lovers. Free Sounds project experience was amazing, then it's time to make it better.
+A new re-designed platform for free tekno lovers just because
+
+_"Free Sounds project experience is awesome!"_
+
+## Services
+
+- no stop 24/7 web radio
+- no stop 24/7 YouTube live streaming
+- 8x5 Facebook live streaming
+- no stop 24/7 upload platform
+- no stop 24/7 download platform
+- mobile and desktop applications
+- stream setup support for underground producers
 
 ## Goals
 
-- Radio schedule must be delegated to the best producers
-- Media library tools can be easily improved
+- Radio schedule delegation to experienced producers and broadcasters
+- Media library tools can be easily improved (jingles, video intro/outro)
 - YouTube channel traffic/subscribers increase
 - Websites ROI increase
 - Product / Artists partnerships
@@ -19,6 +31,8 @@ A new re-designed platform for free tekno lovers. Free Sounds project experience
 - waveform timed commenting system
 - responsive UI
 - send tracks via Telegram
-- all tracks auto-converted to video and uploaded to YouTube (more audience)
+- automatic track to video conversion
+- automatic video upload to Free Underground Tekno Radio YouTube channel
+- automatic YouTube video playlist insertion
 - automatic bpm detection for all tracks
 - automatic qrcode image for all track
