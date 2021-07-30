@@ -10,7 +10,8 @@ A new re-designed platform for free tekno lovers just because _"Free Sounds proj
 - no stop 24/7 upload platform
 - no stop 24/7 download platform
 - mobile and desktop applications
-- stream setup support for underground producers
+- IT support for producers
+- custom campaigns
 
 ## Goals
 
