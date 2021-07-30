@@ -1,12 +1,15 @@
 #!/bin/bash
+
+STORAGE=/mnt/free-tekno.com/storage
+
 VBR="3000k"
 FPS="30"
 QUAL="ultrafast"
 STREAM_URL="rtmps://live-api-s.facebook.com:443/rtmp/" # Facebook live endpoint
 STREAM_KEY="$(cat .stream_key_facebook)" # use a permanent stream key here 
-VIDEO_SOURCE="$(cat .storage)/video.mp4" # local video file
+VIDEO_SOURCE="$STORAGE/video.mp4" # local video file
 AUDIO_SOURCE="http://radio.freeundergroundtekno.org/radio/8000/radio.mp3" # mp3 radio stream url
-NP_SOURCE="$(cat .storage)/nowplaying.txt" # now playing data
+NP_SOURCE="$STORAGE/nowplaying.txt" # now playing data
 
 while :
 do
