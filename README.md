@@ -13,15 +13,12 @@ A new re-designed platform for free tekno lovers just because _"Free Sounds proj
 - IT support for producers
 - custom campaigns
 
-## Goals
+## Roadmap
 
-- Radio schedule delegation to experienced producers and broadcasters
-- Media library tools can be easily improved (jingles, video intro/outro)
-- YouTube channel traffic/subscribers increase
-- Websites ROI increase
-- Product / Artists partnerships
-- Tools for users (qr, bpm, audio reports, branding, geo, import from 3rd party platforms..)
-- Desktop apps
+- 08/2021: public beta (everybody is welcome)
+- 10/2021: beta launch to Free Sounds users (2K)
+- 12/2021: beta launch to all Free Underground Tekno Radio subscribers (+70K)
+- 01/2022: public launch
 
 ## Features
 
@@ -37,3 +34,13 @@ A new re-designed platform for free tekno lovers just because _"Free Sounds proj
 - automatic YouTube video playlist insertion
 - automatic bpm detection for all tracks
 - automatic qrcode image for all track
+
+## Goals
+
+- Radio schedule delegation to experienced producers and broadcasters
+- Media library tools can be easily improved (jingles, video intro/outro)
+- YouTube channel traffic/subscribers increase
+- Websites ROI increase
+- Product / Artists partnerships
+- Tools for users (qr, bpm, audio reports, branding, geo, import from 3rd party platforms..)
+- Desktop apps
