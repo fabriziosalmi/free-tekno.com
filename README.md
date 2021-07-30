@@ -9,7 +9,7 @@ A new re-designed platform for free tekno lovers just because _"Free Sounds proj
 - 8x5 Facebook live streaming
 - no stop 24/7 upload platform
 - no stop 24/7 download platform
-- mobile and desktop applications
+- mobile application
 - IT support for producers
 - custom campaigns
 
