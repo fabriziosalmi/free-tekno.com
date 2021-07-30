@@ -20,7 +20,8 @@ A new re-designed platform for free tekno lovers just because _"Free Sounds proj
 - YouTube channel traffic/subscribers increase
 - Websites ROI increase
 - Product / Artists partnerships
-- Build and share tools for users (qr, bpm, audio reports, branding, geo)
+- Tools for users (qr, bpm, audio reports, branding, geo, import from 3rd party platforms..)
+- Desktop apps
 
 ## Features
 
