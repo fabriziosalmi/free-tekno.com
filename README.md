@@ -1,8 +1,6 @@
 # free-tekno.com
 
-A new re-designed platform for free tekno lovers just because
-
-_"Free Sounds project experience is awesome!"_
+A new re-designed platform for free tekno lovers just because _"Free Sounds project experience is awesome!"_
 
 ## Services
 
