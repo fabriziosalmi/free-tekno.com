@@ -21,6 +21,7 @@ _"Free Sounds project experience is awesome!"_
 - YouTube channel traffic/subscribers increase
 - Websites ROI increase
 - Product / Artists partnerships
+- Build and share tools for users (qr, bpm, audio reports, branding, geo)
 
 ## Features
 
